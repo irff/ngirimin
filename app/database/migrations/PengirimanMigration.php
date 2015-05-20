@@ -11,6 +11,8 @@ class PengirimanMigration {
 
         $table->integer('id_user');
         $table->integer('id_barang');
+        
+        $table->integer('jumlah_barang');
 
         $table->string('tanggal_kirim');
         

@@ -10,6 +10,7 @@ $app->group('/pengiriman', function () use ($app) {
       $pengiriman->id = $i;
       $pengiriman->id_user = 1;
       $pengiriman->id_barang = rand(1, 9);
+      $pengiriman->jumlah_barang = rand(2, 4);
       $pengiriman->tanggal_kirim = date('Y-m-d');
       $pengiriman->nama = 'Budi'.$i;
       $pengiriman->alamat = 'Alamat';
@@ -30,6 +31,7 @@ $app->group('/pengiriman', function () use ($app) {
     $pengiriman->id = $id;
     $pengiriman->id_user = 1;
     $pengiriman->id_barang = rand(1, 9);
+    $pengiriman->jumlah_barang = rand(2, 4);
     $pengiriman->tanggal_kirim = date('Y-m-d');
     $pengiriman->nama = 'Budi'.$id;
     $pengiriman->alamat = 'Alamat';
