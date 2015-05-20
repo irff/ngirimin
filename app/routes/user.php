@@ -4,14 +4,15 @@ $app->group('/user', function () use ($app) {
 
   $app->get('/', function () use ($app) {
 
+    $u = User::find(1);
+
     $user = new stdClass;
-    $user->id = 1;
-    $user->email = 'budi@email.com';
-    $user->password = 'password';
-    $user->nama = 'Budi';
-    $user->alamat = 'Alamat';
-    $user->kodepos = 'kodepos';
-    $user->telepon = 'telepon';
+    $user->id = $u->id;
+    $user->email = $u->email;
+    $user->nama = $u->nama;
+    $user->alamat = $u->alamat;
+    $user->kodepos = $u->kodepos;
+    $user->telepon = $u->telepon;
 
     echo json_encode($user);
     exit;
@@ -21,7 +22,13 @@ $app->group('/user', function () use ($app) {
   $app->post('/edit', function () use ($app) {
     $post = $app->request->post();
 
-    // TODO: update entry with id
+    $user = User::find(1);
+    $user->nama = $post['nama'];
+    $user->alamat = $post['alamat'];
+    $user->kodepos = $post['kodepos'];
+    $user->telepon = $post['telepon'];
+    $user->save();
+
     $response = new stdClass;
     $response->ok = true;
     

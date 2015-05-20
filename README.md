@@ -35,5 +35,5 @@
 ### User
 
 1. `GET /api/user` -> mendapatkan detail user yang sedang login
-2. `POST /api/user/edit` -> mengedit user
+2. `POST /api/user/edit` -> mengedit user. Accepts: `{"nama": string, "alamat": string, "kodepos": string, "telepon": string}`
 
