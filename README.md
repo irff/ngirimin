@@ -19,10 +19,19 @@
 1. `GET /api/pengiriman` -> mendapatkan daftar pengiriman suatu user
 2. `POST /api/pengiriman/add` -> menambah pengiriman baru
 3. `GET /api/pengiriman/:id` -> mendapatkan pengiriman dengan id tertentu
-3. `GET /api/pengiriman/:id/print` -> mencetak label (?)
-3. `GET /api/pengiriman/:id/toggle/:code` -> mengubah status pengiriman id tertentu dengan kode tertentu (0-5)
+4. `GET /api/pengiriman/:id/print` -> mencetak label (?)
+5. `GET /api/pengiriman/:id/toggle/:code` -> mengubah status pengiriman id tertentu dengan kode tertentu (0-5)
+
+#### Status pengiriman
+
+- 0 -> Baru dipesan
+- 1 -> Sudah dibayar
+- 2 -> Sudah dikemas
+- 3 -> Sudah dikirim
+- 4 -> Sudah diterima
 
 ### User
 
 1. `GET /api/user` -> mendapatkan detail user yang sedang login
 2. `POST /api/user/edit` -> mengedit user
+
