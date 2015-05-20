@@ -1,12 +1,12 @@
 // Config (sorry hardcode)
 var BASE_URL = 'http://localhost/ngirimin/public/api/';
+var LOGGED_IN = false;
 
 angular.module('ngiriminApp', ['ngRoute'])
 
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
-		templateUrl: 'templates/home.html',
-		controller: 'mainController'
+		redirectTo: '/home'
 	})
 
 	.when('/home', {
@@ -24,11 +24,6 @@ angular.module('ngiriminApp', ['ngRoute'])
 		controller: 'registerController'
 	})
 
-	.when('/pengiriman', {
-		templateUrl: 'templates/pengiriman.html',
-		controller: 'pengirimanController'
-	})
-
 	.when('/user', {
 		templateUrl: 'templates/user.html',
 		controller: 'userController'
@@ -37,7 +32,18 @@ angular.module('ngiriminApp', ['ngRoute'])
 	.when('/barang', {
 		templateUrl: 'templates/barang.html',
 		controller: 'barangController'
+	})
+
+	.when('/barang/:barangId', {
+		templateUrl: 'templates/barang.html',
+		controller: 'barangController'
+	})
+
+	.when('/pengiriman', {
+		templateUrl: 'templates/pengiriman.html',
+		controller: 'pengirimanController'
 	});
+
 
 	$locationProvider.html5Mode(true);
 })
@@ -124,7 +130,7 @@ angular.module('ngiriminApp', ['ngRoute'])
 	})
 })
 
-.controller('barangController', function($scope, BarangService) {
+.controller('barangController', function($scope, $routeParams, BarangService) {
 	$scope.message = 'Barang gan!';
 	var id = 1;
 
@@ -132,6 +138,12 @@ angular.module('ngiriminApp', ['ngRoute'])
 		console.log(data);
 		$scope.allBarang = data;
 	});
+
+	if($routeParams.barangId) {
+		$scope.barang_id = $routeParams.barangId;
+		$scope.singleItem = true;
+		console.log('single');
+	}
 
 	BarangService.getBarang(id, function(data) {
 		console.log(data);

@@ -1,21 +1,71 @@
 {{ message }}
+<div ng-if="!singleItem">
+    <div class="container">
+      <div class="section content-holder">
+        <div class="row">
+          <div class="nav-wrapper col m4 right">
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" required>
+                <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
+                <i class="mdi-navigation-close"></i>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s3">
+            <div class="list-item">
+              <a href="dashboard.html" class="btn col m12 btn-flat waves-effect"><i class="mdi-editor-insert-chart"></i> Dashboard</a>
+              <a href="listBarang.html" class="btn col m12 waves-effect"><i class="mdi-action-shopping-cart"></i> List Barang</a>
+              <a href="listPengiriman.html" class="btn col m12 btn-flat waves-effect"><i class="mdi-maps-local-shipping"></i> List Pengiriman</a>
+            </div>
+          </div>
 
-<h2>Semua barang:</h2>
+          <div class="col s9">
+            <a href="listBarang-TambahBarang.html" class="btn blue waves-effect right">Tambah Barang</a>
+            <table class="barang">
+              <thead>
+                <tr>
+                  <th class="header" data-field="no">Nomor</th>
+                  <th class="header" data-field="name">Nama Barang</th>
+                  <th class="header" data-field="stock">Stok</th>
+                  <th class="header option" data-field="option">Options</th>
+                </tr>
+              </thead>
 
-<table>
-	<thead>
-		<td>Id</td>
-		<td>Nama</td>
-		<td>Stok</td>
-	</thead>
-	<tr ng-repeat="brg in allBarang">
-		<td>{{ brg.id }}</td>
-		<td>{{ brg.nama }}</td>
-		<td>{{ brg.stok }}</td>
-	</tr>
-</table>
+              <tbody>
+                <tr ng-repeat='brg in allBarang'>
+                  <td>{{ $index }}</td>
+                  <td>{{ brg.nama }}</td>
+                  <td>{{ brg.stok }}</td>
+                  <td>
+                    <a class="waves-effect btn" href="barang/{{ brg.id }}"><i class="mdi-content-create">Cek</i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <ul class="pagination">
+              <li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
+              <li class="active"><a href="#!">1</a></li>
+              <li class="waves-effect"><a href="#!">2</a></li>
+              <li class="waves-effect"><a href="#!">3</a></li>
+              <li class="waves-effect"><a href="#!">4</a></li>
+              <li class="waves-effect"><a href="#!">5</a></li>
+              <li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
 
-<h2>barang id = 1:</h2>
-<h3>id = {{ barang.id }}</h3>
-<h3>Nama = {{ barang.nama }}</h3>
-<h3>Stok = {{ barang.stok }}</h3>
+      </div>
+    </div>
+</div>
+
+<div ng-if="singleItem">
+	<h2>Single item barang id = 1:</h2>
+	<h3>id = {{ barang.id }}</h3>
+	<h3>Nama = {{ barang.nama }}</h3>
+	<h3>Stok = {{ barang.stok }}</h3>	
+</div>
