@@ -1,1 +1,21 @@
 {{ message }}
+
+<h2>Semua barang:</h2>
+
+<table>
+	<thead>
+		<td>Id</td>
+		<td>Nama</td>
+		<td>Stok</td>
+	</thead>
+	<tr ng-repeat="brg in allBarang">
+		<td>{{ brg.id }}</td>
+		<td>{{ brg.nama }}</td>
+		<td>{{ brg.stok }}</td>
+	</tr>
+</table>
+
+<h2>barang id = 1:</h2>
+<h3>id = {{ barang.id }}</h3>
+<h3>Nama = {{ barang.nama }}</h3>
+<h3>Stok = {{ barang.stok }}</h3>

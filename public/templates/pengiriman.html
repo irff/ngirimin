@@ -1,0 +1,45 @@
+<h1>Pengiriman gan!</h1>
+
+<h2>Semua pengiriman</h2>
+
+<table>
+	<thead>
+		<td>No</td>
+		<td>id</td>
+		<td>id user</td>
+		<td>id barang</td>
+		<td>Tanggal Kirim</td>
+		<td>Nama</td>
+		<td>Alamat</td>
+		<td>Kode pos</td>
+		<td>Telepon</td>
+		<td>Email</td>
+		<td>Status</td>
+	</thead>
+	<tr ng-repeat="png in allPengiriman">
+		<td>{{ $index }}</td>
+		<td>{{ png.id }}</td>
+		<td>{{ png.id_user }}</td>
+		<td>{{ png.id_barang }}</td>
+		<td>{{ png.tanggal_kirim }}</td>
+		<td>{{ png.nama }}</td>
+		<td>{{ png.alamat }}</td>
+		<td>{{ png.kode_pos}}</td>
+		<td>{{ png.telepon }}</td>
+		<td>{{ png.email }}</td>
+		<td>{{ png.status }}</td>
+	</tr>
+</table>
+
+<h2>Pengiriman dengan id = 1</h2>
+
+<h3>id = {{ pengiriman.id }}</h3>
+<h3>id user = {{ pengiriman.id_user }}</h3>
+<h3>id barang = {{ pengiriman.id_barang }}</h3>
+<h3>tanggal kirim = {{ pengiriman.tanggal_kirim }}</h3>
+<h3>nama = {{ pengiriman.nama }}</h3>
+<h3>alamat = {{ pengiriman.alamat }}</h3>
+<h3>kode pos = {{ pengiriman.kode_pos}}</h3>
+<h3>telepon = {{ pengiriman.telepon }}</h3>
+<h3>email = {{ pengiriman.email }}</h3>
+<h3>status = {{ pengiriman.status }}</h3>
