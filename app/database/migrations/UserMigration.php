@@ -2,9 +2,6 @@
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-/**
- * Example migration for use with "novice"
- */
 class UserMigration {
   function run()
   {
@@ -14,6 +11,10 @@ class UserMigration {
 
         $table->string('email');
         $table->string('password');
+        $table->string('nama');
+        $table->string('alamat');
+        $table->string('kodepos');
+        $table->string('telepon');
 
         $table->timestamps();
     });
