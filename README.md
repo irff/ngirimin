@@ -19,7 +19,7 @@
 ### Pengiriman
 
 1. `GET /api/pengiriman` -> mendapatkan daftar pengiriman suatu user
-2. `POST /api/pengiriman/add` -> menambah pengiriman baru
+2. `POST /api/pengiriman/add` -> menambah pengiriman baru dan mengurangi stok barang. Accepts: `{"id_user": int, "id_barang": int, "jumlah_barang": int, "tanggal_kirim": string, "nama": string, "alamat": string, "kodepos": string, "telepon": string, "email": string, "status": int}`
 3. `GET /api/pengiriman/:id` -> mendapatkan pengiriman dengan id tertentu
 4. `GET /api/pengiriman/:id/print` -> mencetak label (?)
 5. `GET /api/pengiriman/:id/toggle/:code` -> mengubah status pengiriman id tertentu dengan kode tertentu (0-5)
@@ -36,4 +36,3 @@
 
 1. `GET /api/user` -> mendapatkan detail user yang sedang login
 2. `POST /api/user/edit` -> mengedit user. Accepts: `{"nama": string, "alamat": string, "kodepos": string, "telepon": string}`
-
