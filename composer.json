@@ -1,0 +1,12 @@
+{
+    "require": {
+        "slim/slim": "2.*",
+        "slim/views": "*",
+        "twig/twig": "*",
+        "illuminate/database": "*"
+    },
+    "autoload": {
+        "files": [ "app/config/database.php" ],
+        "classmap": [ "app/models" ]
+    }
+}
