@@ -42,6 +42,11 @@ angular.module('ngiriminApp', ['ngRoute'])
 	.when('/pengiriman', {
 		templateUrl: 'templates/pengiriman.html',
 		controller: 'pengirimanController'
+	})
+
+	.when('/pengiriman/:pengirimanId', {
+		templateUrl: 'templates/pengiriman.html',
+		controller: 'pengirimanController'
 	});
 
 
@@ -140,18 +145,19 @@ angular.module('ngiriminApp', ['ngRoute'])
 	});
 
 	if($routeParams.barangId) {
-		$scope.barang_id = $routeParams.barangId;
+		$scope.barangId = $routeParams.barangId;
 		$scope.singleItem = true;
 		console.log('single');
+
+		BarangService.getBarang($scope.barangId, function(data) {
+			console.log(data);
+			$scope.barang = data;
+		});
 	}
 
-	BarangService.getBarang(id, function(data) {
-		console.log(data);
-		$scope.barang = data;
-	});
 })
 
-.controller('pengirimanController', function($scope, PengirimanService) {
+.controller('pengirimanController', function($scope, $routeParams, PengirimanService) {
 	$scope.message = 'Pengiriman gan!!';
 	var id = 1;
 
@@ -160,8 +166,14 @@ angular.module('ngiriminApp', ['ngRoute'])
 		$scope.allPengiriman = data;
 	});
 
-	PengirimanService.getPengiriman(id, function(data) {
-		console.log(data);
-		$scope.pengiriman = data;
-	});
+	if($routeParams.pengirimanId) {
+		$scope.pengirimanId = $routeParams.pengirimanId;
+		$scope.singleItem = true;
+		console.log('single');
+
+		PengirimanService.getPengiriman($scope.pengirimanId, function(data) {
+			console.log(data);
+			$scope.pengiriman = data;
+		});
+	}
 });
