@@ -4,15 +4,17 @@
 
 1. Clone project ini
 2. `composer install` (pada root project)
+3. Buat database `ngirimin`
+4. `php novice migrate --seed` (pada root project)
 
 ## Endpoints
 
 ### Barang
 
-1. `GET /api/barang` -> mendapatkan daftar barang suatu user
-2. `POST /api/barang/add` -> menambah barang baru
+1. `GET /api/barang` -> mendapatkan daftar barang suatu user.
+2. `POST /api/barang/add` -> menambah barang baru. Accepts: `{"id_user": int, "nama": string, "stok": int}`
 3. `GET /api/barang/:id` -> mendapatkan barang dengan id tertentu
-4. `POST /api/barang/:id/edit` -> mengedit barang
+4. `POST /api/barang/:id/edit` -> mengedit barang Accepts: `{"nama": string, "stok": int}`
 
 ### Pengiriman
 
