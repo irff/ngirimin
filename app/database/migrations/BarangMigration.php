@@ -9,6 +9,8 @@ class BarangMigration {
     Capsule::schema()->create('barang', function($table) {
         $table->increments('id');
 
+        $table->integer('id_user');
+
         $table->string('nama');
         $table->integer('stok');
 
