@@ -96,6 +96,9 @@ angular.module('ngiriminApp', ['ngRoute'])
 		},
 		getBarang: function(id, callback) {
 			$http.get(barangURL + '/' + id).success(callback);
+		},
+		addBarang: function(barang, callback) {
+			$http.post(barangURL + '/add', barang).success(callback);
 		}
 	};
 })
@@ -138,6 +141,18 @@ angular.module('ngiriminApp', ['ngRoute'])
 .controller('barangController', function($scope, $routeParams, BarangService) {
 	$scope.message = 'Barang gan!';
 	var id = 1;
+
+	$scope.barang = {
+		id_user: 1,
+		nama: 'Pepsodent 1kg',
+		stok: 100
+	};
+
+	$scope.addBarang = function() {
+		BarangService.addBarang($scope.barang, function(data) {
+			console.log(data);
+		});
+	};
 
 	BarangService.getAllBarang(function(data) {
 		console.log(data);

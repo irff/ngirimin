@@ -34,8 +34,9 @@ $app->group('/barang', function () use ($app) {
   });
 
   $app->post('/add', function () use ($app) {
-    $post = $app->request->post();
-
+    $raw_data = $app->request->getBody();
+    $post = json_decode($raw_data, true);
+    
     $barang = new Barang;
     $barang->id_user = $post['id_user'];
     $barang->nama = $post['nama'];
@@ -51,7 +52,8 @@ $app->group('/barang', function () use ($app) {
   });
 
   $app->post('/:id/edit', function ($id) use ($app) {
-    $post = $app->request->post();
+    $raw_data = $app->request->getBody();
+    $post = json_decode($raw_data, true);
 
     $barang = Barang::find($id);
     $barang->nama = $post['nama'];

@@ -49,7 +49,8 @@ $app->group('/pengiriman', function () use ($app) {
   });
 
   $app->post('/add', function () use ($app) {
-    $post = $app->request->post();
+    $raw_data = $app->request->getBody();
+    $post = json_decode($raw_data, true);
 
     $pengiriman = new Pengiriman;
     $pengiriman->id_user = $post['id_user'];

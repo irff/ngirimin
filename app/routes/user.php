@@ -20,7 +20,8 @@ $app->group('/user', function () use ($app) {
   });
 
   $app->post('/edit', function () use ($app) {
-    $post = $app->request->post();
+    $raw_data = $app->request->getBody();
+    $post = json_decode($raw_data, true);
 
     $user = User::find(1);
     $user->nama = $post['nama'];
