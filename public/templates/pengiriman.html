@@ -28,7 +28,7 @@
           </div>
 
           <div class="col s9">
-            <a href="listPengiriman-TambahPengiriman.html" class="btn blue waves-effect right">Tambah Pengiriman</a>
+            <button class="btn blue waves-effect right" ng-click="addPengiriman()">Tambah Pengiriman</button>
             <table class="barang">
               <thead>
                 <tr>
@@ -41,6 +41,7 @@
                   <th data-field="tanggal">Tanggal</th>
                   <th data-field="status">Status</th>
                   <th data-field="option">Option</th>
+                  <th data-field="change-status">Change Status</th>
                 </tr>
               </thead>
 
@@ -56,6 +57,9 @@
                   <td>{{ png.status }}</td>
                   <td>
                     <a href="pengiriman/{{ png.id }}" class="waves-effect btn"><i class="mdi-image-remove-red-eye"></i></a>
+                  </td>
+                  <td>
+                    <button ng-repeat="status in [0,1,2,3,4]" ng-click="updateStatus(png.id, status)">{{ status }}</button>
                   </td>
                 </tr>
               </tbody>

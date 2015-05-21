@@ -99,6 +99,16 @@ angular.module('ngiriminApp', ['ngRoute'])
 		},
 		addBarang: function(barang, callback) {
 			$http.post(barangURL + '/add', barang).success(callback);
+		},
+		editBarang: function(barang, callback) {
+			var id   = barang.id,
+				nama = barang.nama,
+				stok = barang.stok;
+
+			$http.post(barangURL + '/' + id + '/edit', {
+				'nama' : nama,
+				'stok' : stok
+			}).success(callback);
 		}
 	};
 })
@@ -112,8 +122,14 @@ angular.module('ngiriminApp', ['ngRoute'])
 		},
 		getPengiriman: function(id, callback) {
 			$http.get(pengirimanURL + '/' + id).success(callback);
+		},
+		addPengiriman: function(pengiriman, callback) {
+			$http.get(pengirimanURL + '/add', pengiriman).success(callback);
+		},
+		updateStatus: function(id, code, callback) {
+			$http.get(pengirimanURL + '/' + id + '/toggle/' + code).success(callback);
 		}
-	}
+	};
 })
 
 .controller('mainController', function($scope, NavigationService) {
@@ -154,10 +170,17 @@ angular.module('ngiriminApp', ['ngRoute'])
 		});
 	};
 
+	$scope.editBarang = function() {
+		BarangService.editBarang($scope.barang, function(data) {
+			console.log(data);
+		});
+	};
+
 	BarangService.getAllBarang(function(data) {
 		console.log(data);
 		$scope.allBarang = data;
 	});
+
 
 	if($routeParams.barangId) {
 		$scope.barangId = $routeParams.barangId;
@@ -175,6 +198,31 @@ angular.module('ngiriminApp', ['ngRoute'])
 .controller('pengirimanController', function($scope, $routeParams, PengirimanService) {
 	$scope.message = 'Pengiriman gan!!';
 	var id = 1;
+
+	$scope.pengiriman = {
+		id_user: 1,
+		id_barang: 1,
+		jumlah_barang: 1,
+		tanggal_kirim: "11 Januari 2015",
+		nama: "Irfan",
+		alamat: "Pocin aja",
+		kodepos: "16424",
+		telepon: "089666",
+		email: "irfan@ui.ac.id",
+		status: 0
+	};
+
+	$scope.addPengiriman = function() {
+		PengirimanService.addPengiriman($scope.pegiriman, function(data) {
+			console.log(data);
+		});
+	};
+
+	$scope.updateStatus =  function(id, code) {
+		PengirimanService.updateStatus(id, code, function(data) {
+			console.log(data);
+		});
+	}
 
 	PengirimanService.getAllPengiriman(function(data) {
 		console.log(data);
