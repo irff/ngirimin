@@ -53,3 +53,33 @@ p {
 footer.page-footer {
   margin: 0;
 }
+/* --- */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.content-holder.dashboard{
+  margin-top: 80px;
+}
+.barang .header.option{
+  width:200px;
+}      
+.list-item a{
+  margin: 5px 0;
+}
+.list-item a:hover{
+  color: #fff;
+}
+.ecomm-icon{
+  width: 20px;
+  height: 20px;
+}
+.card-content h3{
+  margin:0;
+}

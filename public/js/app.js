@@ -154,14 +154,14 @@ angular.module('ngiriminApp', ['ngRoute'])
 	})
 })
 
-.controller('barangController', function($scope, $routeParams, BarangService) {
+.controller('barangController', function($scope, $routeParams, $location, BarangService) {
 	$scope.message = 'Barang gan!';
 	var id = 1;
 
 	$scope.barang = {
 		id_user: 1,
-		nama: 'Pepsodent 1kg',
-		stok: 100
+		nama: '',
+		stok: ''
 	};
 
 	$scope.addBarang = function() {
@@ -173,24 +173,31 @@ angular.module('ngiriminApp', ['ngRoute'])
 	$scope.editBarang = function() {
 		BarangService.editBarang($scope.barang, function(data) {
 			console.log(data);
+			$location.path('/barang')
 		});
 	};
-
-	BarangService.getAllBarang(function(data) {
-		console.log(data);
-		$scope.allBarang = data;
-	});
-
 
 	if($routeParams.barangId) {
 		$scope.barangId = $routeParams.barangId;
 		$scope.singleItem = true;
 		console.log('single');
+		$scope.isLoading2 = true;
 
 		BarangService.getBarang($scope.barangId, function(data) {
 			console.log(data);
 			$scope.barang = data;
+			$scope.isLoading2 = false;
 		});
+	}
+	else{
+		$scope.isLoading = true;
+
+		BarangService.getAllBarang(function(data) {
+			console.log(data);
+			$scope.allBarang = data;
+			$scope.isLoading = false;
+		});
+
 	}
 
 })
@@ -224,9 +231,12 @@ angular.module('ngiriminApp', ['ngRoute'])
 		});
 	}
 
+	$scope.isLoading = true;
+
 	PengirimanService.getAllPengiriman(function(data) {
 		console.log(data);
 		$scope.allPengiriman = data;
+		$scope.isLoading = false;
 	});
 
 	if($routeParams.pengirimanId) {

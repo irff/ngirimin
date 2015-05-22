@@ -1,34 +1,47 @@
-<h1>Pengiriman gan!</h1>
-
-
-<div ng-if="!singleItem">
-	<h2>Semua pengiriman</h2>
-    <div class="container">
-      <div class="section content-holder">
-        <div class="row">
-          <div class="nav-wrapper col m4 right">
-            <form>
-              <div class="input-field">
-                <input id="search" type="search" required>
-                <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
-                <i class="mdi-navigation-close"></i>
-              </div>
-            </form>
-          </div>
-          
-        </div>
-        <!--   Icon Section   -->
-        <div class="row">
-          <div class="col s3">
-            <div class="list-item">
-              <a href="dashboard.html" class="btn col m12 btn-flat waves-effect"><i class="mdi-editor-insert-chart"></i> Dashboard</a>
-              <a href="listBarang.html" class="btn col m12 btn-flat waves-effect"><i class="mdi-action-shopping-cart"></i> List Barang</a>
-              <a href="listPengiriman.html" class="btn col m12 waves-effect"><i class="mdi-maps-local-shipping"></i> List Pengiriman</a>
+<div>
+  <div class="container">
+    <div class="section content-holder">
+      <div class="row">
+        <div class="nav-wrapper col m4 right">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" ng-model="searchBarang" required>
+              <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
+              <i class="mdi-navigation-close"></i>
             </div>
-          </div>
+          </form>
+        </div>
 
-          <div class="col s9">
-            <button class="btn blue waves-effect right" ng-click="addPengiriman()">Tambah Pengiriman</button>
+      </div>
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s3">
+          <div class="list-item">
+            <a href="./" class="btn col m12 btn-flat waves-effect"><i class="mdi-editor-insert-chart"></i> Dashboard</a>
+            <a href="./barang" class="btn col m12 btn-flat waves-effect"><i class="mdi-action-shopping-cart"></i> List Barang</a>
+            <a href="./pengiriman" class="btn col m12 waves-effect"><i class="mdi-maps-local-shipping"></i> List Pengiriman</a>
+          </div>
+        </div>
+
+        <div ng-if="singleItem">
+          <button class="btn blue waves-effect right" ng-click="addPengiriman()">Tambah Pengiriman</button>
+        </div>
+        <div class="col s9">
+          <div ng-if="singleItem">
+            <h2>Single item Pengiriman dengan id = 1</h2>
+
+            <h3>id = {{ pengiriman.id }}</h3>
+            <h3>id user = {{ pengiriman.id_user }}</h3>
+            <h3>id barang = {{ pengiriman.id_barang }}</h3>
+            <h3>tanggal kirim = {{ pengiriman.tanggal_kirim }}</h3>
+            <h3>nama = {{ pengiriman.nama }}</h3>
+            <h3>alamat = {{ pengiriman.alamat }}</h3>
+            <h3>kode pos = {{ pengiriman.kode_pos}}</h3>
+            <h3>telepon = {{ pengiriman.telepon }}</h3>
+            <h3>email = {{ pengiriman.email }}</h3>
+            <h3>status = {{ pengiriman.status }}</h3> 
+          </div>
+          <div ng-if="!singleItem">
             <table class="barang">
               <thead>
                 <tr>
@@ -46,7 +59,10 @@
               </thead>
 
               <tbody>
-                <tr ng-repeat="png in allPengiriman">
+                <tr ng-if="isLoading">
+                  <td>Fetching Data...</td>
+                </tr>
+                <tr ng-repeat="png in allPengiriman | filter:searchBarang">
                   <td>{{ $index }}</td>
                   <td>{{ png.nama }}</td>
                   <td>12</td>
@@ -64,34 +80,9 @@
                 </tr>
               </tbody>
             </table>
-            
-            <ul class="pagination">
-              <li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
-              <li class="active"><a href="#!">1</a></li>
-              <li class="waves-effect"><a href="#!">2</a></li>
-              <li class="waves-effect"><a href="#!">3</a></li>
-              <li class="waves-effect"><a href="#!">4</a></li>
-              <li class="waves-effect"><a href="#!">5</a></li>
-              <li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
-            </ul>
           </div>
         </div>
-
       </div>
     </div>
-</div>
-
-<div ng-if="singleItem">
-	<h2>Single item Pengiriman dengan id = 1</h2>
-
-	<h3>id = {{ pengiriman.id }}</h3>
-	<h3>id user = {{ pengiriman.id_user }}</h3>
-	<h3>id barang = {{ pengiriman.id_barang }}</h3>
-	<h3>tanggal kirim = {{ pengiriman.tanggal_kirim }}</h3>
-	<h3>nama = {{ pengiriman.nama }}</h3>
-	<h3>alamat = {{ pengiriman.alamat }}</h3>
-	<h3>kode pos = {{ pengiriman.kode_pos}}</h3>
-	<h3>telepon = {{ pengiriman.telepon }}</h3>
-	<h3>email = {{ pengiriman.email }}</h3>
-	<h3>status = {{ pengiriman.status }}</h3>	
+  </div>
 </div>

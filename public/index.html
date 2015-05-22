@@ -12,38 +12,6 @@
 	<!-- CSS  -->
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	<style type="text/css">
-
-	body {
-		display: flex;
-		min-height: 100vh;
-		flex-direction: column;
-	}
-
-	main {
-		flex: 1 0 auto;
-	}
-
-	.content-holder.dashboard{
-		margin-top: 80px;
-	}
-	.barang .header.option{
-		width:200px;
-	}      
-	.list-item a{
-		margin: 5px 0;
-	}
-	.list-item a:hover{
-		color: #fff;
-	}
-	.ecomm-icon{
-		width: 20px;
-		height: 20px;
-	}
-	.card-content h3{
-		margin:0;
-	}
-	</style>
 </head>
 <body>
 	<!-- Dropdown Structure -->
@@ -58,7 +26,7 @@
 			<a id="logo-container" href="#" class="brand-logo">Simpanin</a>
 			<ul class="right hide-on-med-and-down">
 				<!-- <li class="waves-effect"><a href="#" class="">Login</a></li> -->
-				<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Muhammad Faris<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+				<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1">Muhammad Faris<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 			</ul>
 			<ul id="nav-mobile" class="side-nav">
 				<li><a href="#">Navbar Link</a></li>
@@ -70,17 +38,6 @@
 	<div id="main">
 		<div ng-view></div>
 	</div>
-
-
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-	<a class="btn-floating btn-large blue">
-		<i class="large mdi-content-add"></i>
-	</a>
-	<ul>
-		<li><a style="transform: scaleX(0.4) scaleY(0.4) translateY(40px); opacity: 0;" class="btn-floating yellow darken-1"><i class="large mdi-action-shopping-cart"></i></a></li>
-		<li><a style="transform: scaleX(0.4) scaleY(0.4) translateY(40px); opacity: 0;" class="btn-floating green"><i class="large mdi-maps-local-shipping"></i></a></li>
-	</ul>
-</div>
 
 <!--  Scripts-->
 <script src="js/jquery.js"></script>
