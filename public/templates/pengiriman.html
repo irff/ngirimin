@@ -70,7 +70,7 @@
                   <td>{{ png.nama }}</td>
                   <td>{{ png.telepon }}</td>
                   <td>{{ png.tanggal_kirim }}</td>
-                  <td>{{ png.status }}</td>
+                  <td>{{ getStatus(png.status) }}</td>
                   <td>
                     <a href="pengiriman/{{ png.id }}" class="waves-effect btn"><i class="mdi-image-remove-red-eye"></i></a>
                   </td>

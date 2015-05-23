@@ -204,6 +204,12 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 })
 
 .controller('pengirimanController', function($scope, $routeParams, PengirimanService) {
+
+	$scope.getStatus = function(statusId) {
+		var namaStatus = ['Baru dipesan', 'Sudah dibayar', 'Sudah dikemas', 'Sudah dikirim', ' Sudah diterima'];
+		return namaStatus[statusId];
+	}
+
 	$scope.message = 'Pengiriman gan!!';
 	var id = 1;
 
