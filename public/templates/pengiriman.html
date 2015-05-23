@@ -113,6 +113,14 @@
           </div>
         </div>
         <div ng-if="!singleItem && !isAddPengiriman">
+          <form>
+            <h5>Filter Berdasarkan Status</h5>
+            <input type="radio" id="status-0" ng-model="statusFilter.status" value="0"><label for="status-0">Baru dipesan</label>
+            <input type="radio" id="status-1" ng-model="statusFilter.status" value="1"><label for="status-1">Sudah dibayar</label>
+            <input type="radio" id="status-2" ng-model="statusFilter.status" value="2"><label for="status-2">Sudah dikemas</label>
+            <input type="radio" id="status-3" ng-model="statusFilter.status" value="3"><label for="status-3">Sudah dikirim</label>
+            <input type="radio" id="status-4" ng-model="statusFilter.status" value="4"><label for="status-4">Sudah diterima</label>
+          </form>
           <table class="barang">
             <thead>
               <tr>
@@ -133,7 +141,7 @@
               <tr ng-if="isLoading">
                 <td>Fetching Data...</td>
               </tr>
-              <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang">
+              <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang | filter: statusFilter">
                 <td>{{ $index+1 }}</td>
                 <td>{{ allBarang[ png.id_barang - 1].nama }}</td>
                 <td>12</td>
