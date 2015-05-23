@@ -102,10 +102,16 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 			}
 		},
 		isLoggedIn: function() {
-			return LOGGED_IN;
+			if(localStorage.getItem('LOGGED_IN') != null) {
+				return JSON.parse(localStorage.getItem('LOGGED_IN'));
+			} else {
+				localStorage.setItem('LOGGED_IN', LOGGED_IN);
+				return LOGGED_IN;
+			}
 		},
 		setLoggedIn: function(value) {
 			LOGGED_IN = value;
+			localStorage.setItem('LOGGED_IN', LOGGED_IN);
 		}
 	};
 })
