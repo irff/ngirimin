@@ -74,7 +74,15 @@
                     <a href="pengiriman/{{ png.id }}" class="waves-effect btn"><i class="mdi-image-remove-red-eye"></i></a>
                   </td>
                   <td>
-                    <button ng-repeat="status in [0,1,2,3,4]" ng-click="updateStatus(png.id, status)">{{ status }}</button>
+                    <div class="input-field col s12">
+                      <select class="browser-default" ng-model="png.status" ng-change="updateStatus(png.id, png.status)">
+                        <option value="0">{{ getStatus(0) }}</option>
+                        <option value="1">{{ getStatus(1) }}</option>
+                        <option value="2">{{ getStatus(2) }}</option>
+                        <option value="3">{{ getStatus(3) }}</option>
+                        <option value="4">{{ getStatus(4) }}</option>
+                      </select>
+                    </div>
                   </td>
                 </tr>
               </tbody>

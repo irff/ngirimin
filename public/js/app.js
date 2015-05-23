@@ -179,13 +179,6 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 		stok: ''
 	};
 
-	$scope.addBarang = function() {
-		BarangService.addBarang($scope.barang, function(data) {
-			console.log(data);
-			$location.path('/barang')
-		});
-	};
-
 	$scope.editBarang = function() {
 		BarangService.editBarang($scope.barang, function(data) {
 			console.log(data);
@@ -203,6 +196,7 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 			BarangService.addBarang($scope.barangId, function(data) {
 				console.log(data);
+				toastr.success($scope.barang.nama + ' berhasil ditambahkan.');
 			});
 		}
 		else{
@@ -231,7 +225,7 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 })
 
-.controller('pengirimanController', function($scope, $routeParams, PengirimanService) {
+.controller('pengirimanController', function($scope, $routeParams, PengirimanService, toastr) {
 
 	$scope.getStatus = function(statusId) {
 		var namaStatus = ['Baru dipesan', 'Sudah dibayar', 'Sudah dikemas', 'Sudah dikirim', ' Sudah diterima'];
@@ -256,26 +250,29 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 		status: 0
 	};
 
+	var getAllPengiriman = function() {
+		PengirimanService.getAllPengiriman(function(data) {
+			console.log(data);
+			$scope.allPengiriman = data;
+			$scope.isLoading = false;
+		});		
+	}
+
 	$scope.addPengiriman = function() {
 		PengirimanService.addPengiriman($scope.pegiriman, function(data) {
 			console.log(data);
+			toastr.success('Pengiriman berhasil ditambahkan');
 		});
 	};
-
 	$scope.updateStatus =  function(id, code) {
 		PengirimanService.updateStatus(id, code, function(data) {
 			console.log(data);
+			getAllPengiriman();
+			toastr.success('Status berhasil diubah menjadi: ' + $scope.getStatus(code));
 		});
 	}
 
 	$scope.isLoading = true;
-
-	PengirimanService.getAllPengiriman(function(data) {
-		console.log(data);
-		$scope.allPengiriman = data;
-		$scope.isLoading = false;
-	});
-
 	if($routeParams.pengirimanId) {
 		$scope.pengirimanId = $routeParams.pengirimanId;
 		$scope.singleItem = true;
@@ -286,4 +283,6 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 			$scope.pengiriman = data;
 		});
 	}
+
+	getAllPengiriman();
 });
