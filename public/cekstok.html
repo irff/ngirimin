@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cekStokBarang">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<title>Cek Stok Barang</title>
+
+	<base href="/ngirimin/public/">
+	<script src="/ngirimin/public/bower_components/angular/angular.min.js"></script>
+	<script src="/ngirimin/public/bower_components/angular-route/angular-route.min.js"></script>
+
+	<!-- CSS  -->
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<a href="cekstok/1">go</a>
+
+	<div ng-view>
+	</div>
+
+	<script>
+		var templateStok = "nama: {{ barang.nama }} <br /> stok: {{ barang.stok }}"
+		angular.module('cekStokBarang', ['ngRoute'])
+		.config(function($routeProvider, $locationProvider) {
+			$routeProvider.when('/cekstok/:barangId', {
+				template: templateStok,
+				controller: 'cekStokBarangController'
+			});
+			$locationProvider.html5Mode(true);
+		})
+		.controller('cekStokBarangController', function($scope, $http, $routeParams, $location) {
+			var barangId = $routeParams.barangId;
+			console.log(barangId);
+			var barangURL = "http://localhost/ngirimin/public/api/barang";
+			$http.get(barangURL + '/' + barangId).success(function(data) {
+				$scope.dataAvailable = true;
+				$scope.barang = data;
+				console.log($scope.barang);
+			});
+
+		});
+	</script>
+</body>
+</html>
