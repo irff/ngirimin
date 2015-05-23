@@ -26,18 +26,68 @@
           </div>
         </div>
         <div ng-if="singleItem">
-          <h2>Single item Pengiriman dengan id = 1</h2>
-
-          <h3>id = {{ pengiriman.id }}</h3>
-          <h3>id user = {{ pengiriman.id_user }}</h3>
-          <h3>id barang = {{ pengiriman.id_barang }}</h3>
-          <h3>tanggal kirim = {{ pengiriman.tanggal_kirim }}</h3>
-          <h3>nama = {{ pengiriman.nama }}</h3>
-          <h3>alamat = {{ pengiriman.alamat }}</h3>
-          <h3>kode pos = {{ pengiriman.kodepos}}</h3>
-          <h3>telepon = {{ pengiriman.telepon }}</h3>
-          <h3>email = {{ pengiriman.email }}</h3>
-          <h3>status = {{ pengiriman.status }}</h3> 
+          <div class="row">
+            <div class="col s12">
+              <h4>Detail Pengiriman</h4>
+              <div class="divider"></div>                
+            </div>
+            <form class="col s6">
+               <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ allBarang[ pengiriman.id_barang - 1].nama }}">
+                  <label class="active">Nama Barang</label>
+                </div>
+              </div>
+               <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.jumlah_barang }}">
+                  <label class="active">Jumlah Barang</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.tanggal_kirim }}">
+                  <label class="active">Tanggal Kirim</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.nama }}">
+                  <label class="active">Nama Penerima </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.alamat }}">
+                  <label class="active">Alamat Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.kodepos }}">
+                  <label class="active">Kode Pos</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.telepon }}">
+                  <label class="active">No. Telepon Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.email }}">
+                  <label class="active">Email Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ getStatus(pengiriman.status) }}">
+                  <label class="active">Status</label>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <div ng-if="isAddPengiriman">
           <div class="row">

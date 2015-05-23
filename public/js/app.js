@@ -337,13 +337,14 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'n
 			toastr.success('Pengiriman berhasil ditambahkan');
 		});
 	};
+
 	$scope.updateStatus =  function(id, code) {
 		PengirimanService.updateStatus(id, code, function(data) {
 			console.log(data);
 			getAllPengiriman();
 			toastr.success('Status berhasil diubah menjadi: ' + $scope.getStatus(code));
 		});
-	}
+	};
 
 	$scope.isLoading = true;
 	if($routeParams.pengirimanId) {
