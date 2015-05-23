@@ -90,7 +90,16 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 		},
 		login: function(user, callback) {
-
+			// jutsu
+			if(user.email == "faris@gmail.com" && user.password == "12345") {
+				callback({
+					status: "success"
+				});
+			} else {
+				callback({
+					status: "error"
+				});
+			}
 		},
 		isLoggedIn: function() {
 			return LOGGED_IN;
@@ -178,6 +187,7 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 	$scope.login = function() {
 		console.log($scope.user);
 		UserService.login($scope.user, function(response) {
+			console.log(response);
 			if(response.status == 'success') {
 				UserService.setLoggedIn(true);
 				$location.path('/home');
