@@ -243,21 +243,22 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'n
 		BarangService.editBarang($scope.barang, function(data) {
 			console.log(data);
 			$location.path('/barang')
-			toastr.success('Edit barang berhasil.');
+			toastr.success($scope.barang.nama + ' berhasil disimpan.');
 		});
 	};
+
+	$scope.addBarang = function() {
+		BarangService.addBarang($scope.barang, function(data) {
+			console.log(data);
+			$location.path('/barang');
+			toastr.success($scope.barang.nama + ' berhasil ditambahkan.')
+		})
+	}
 
 	if($routeParams.barangId) {
 		if($routeParams.barangId == 'add'){
 			console.log('add barang');
 			$scope.isAddBarang = true;
-
-			console.log($scope.barang);
-
-			BarangService.addBarang($scope.barangId, function(data) {
-				console.log(data);
-				toastr.success($scope.barang.nama + ' berhasil ditambahkan.');
-			});
 		}
 		else{
 			$scope.barangId = $routeParams.barangId;
