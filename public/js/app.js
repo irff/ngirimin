@@ -148,8 +148,11 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 	};
 })
 
-.controller('mainController', function($scope, NavigationService, BarangService, PengirimanService) {
-	$scope.message = 'HOME GAN!';
+.controller('mainController', function($scope, $location, NavigationService, BarangService, PengirimanService, UserService, toastr) {
+	if(!UserService.isLoggedIn()) {
+		$location.path('/login');
+		toastr.error('Please log in first.');
+	}
 
 	$scope.navigation = NavigationService.nav;
 	$scope.baseURL = NavigationService.baseURL;
@@ -166,13 +169,14 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 })
 
-.controller('loginController', function($scope, UserService) {
+.controller('loginController', function($scope, $location, UserService, toastr) {
 	$scope.user = {
 		email: '',
 		password: ''
 	}
 
 	$scope.login = function() {
+		console.log($scope.user);
 		UserService.login($scope.user, function(response) {
 			if(response.status == 'success') {
 				UserService.setLoggedIn(true);
@@ -186,6 +190,7 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 	}
 
 	$scope.logout = function() {
+		console.log('haha');
 		UserService.setLoggedIn(false);
 		$location.path('/login');
 		toastr.success('Logout berhasil.');
@@ -203,7 +208,12 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 	})
 })
 
-.controller('barangController', function($scope, $routeParams, $location, BarangService, toastr) {
+.controller('barangController', function($scope, $routeParams, $location, BarangService, UserService, toastr) {
+	if(!UserService.isLoggedIn()) {
+		$location.path('/login');
+		toastr.error('Please log in first.');
+	}
+
 	$scope.message = 'Barang gan!';
 	$scope.filterObj = {};
 	var id = 1;
@@ -260,7 +270,11 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 })
 
-.controller('pengirimanController', function($scope, $routeParams, PengirimanService, toastr) {
+.controller('pengirimanController', function($scope, $location, $routeParams, PengirimanService, UserService, toastr) {
+	if(!UserService.isLoggedIn()) {
+		$location.path('/login');
+		toastr.error('Please log in first.');
+	}
 
 	$scope.getStatus = function(statusId) {
 		var namaStatus = ['Baru dipesan', 'Sudah dibayar', 'Sudah dikemas', 'Sudah dikirim', ' Sudah diterima'];

@@ -18,13 +18,14 @@
 </head>
 <body>
 	<!-- Dropdown Structure -->
-	<ul id="dropdown1" class="dropdown-content">
+	<!-- Login / logout belum dihandle -->
+	<ul id="dropdown1" class="dropdown-content" ng-controller="loginController">
 		<li class="divider"></li>
-		<li><a href="#!">Log Out</a></li>
+		<li><a ng-click="logout()">Log Out</a></li>
 	</ul>
 
 	<!-- Dropdown Structure -->
-	<nav class="white" role="navigation">
+	<nav class="white" role="navigation" >
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="#" class="brand-logo">Simpanin</a>
 			<ul class="right hide-on-med-and-down">
