@@ -2,7 +2,7 @@
 var BASE_URL = 'http://localhost/ngirimin/public/api/';
 var LOGGED_IN = false;
 
-angular.module('ngiriminApp', ['ngRoute'])
+angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
@@ -135,11 +135,22 @@ angular.module('ngiriminApp', ['ngRoute'])
 	};
 })
 
-.controller('mainController', function($scope, NavigationService) {
+.controller('mainController', function($scope, NavigationService, BarangService, PengirimanService) {
 	$scope.message = 'HOME GAN!';
 
 	$scope.navigation = NavigationService.nav;
 	$scope.baseURL = NavigationService.baseURL;
+
+	BarangService.getAllBarang(function(data) {
+		console.log(data);
+		$scope.allBarang = data;
+	});
+
+	PengirimanService.getAllPengiriman(function(data) {
+		console.log(data);
+		$scope.allPengiriman = data;
+	});
+
 })
 
 .controller('loginController', function($scope) {
@@ -157,7 +168,7 @@ angular.module('ngiriminApp', ['ngRoute'])
 	})
 })
 
-.controller('barangController', function($scope, $routeParams, $location, BarangService) {
+.controller('barangController', function($scope, $routeParams, $location, BarangService, toastr) {
 	$scope.message = 'Barang gan!';
 	$scope.filterObj = {};
 	var id = 1;
@@ -179,6 +190,7 @@ angular.module('ngiriminApp', ['ngRoute'])
 		BarangService.editBarang($scope.barang, function(data) {
 			console.log(data);
 			$location.path('/barang')
+			toastr.success('Edit barang berhasil.');
 		});
 	};
 
@@ -220,6 +232,12 @@ angular.module('ngiriminApp', ['ngRoute'])
 })
 
 .controller('pengirimanController', function($scope, $routeParams, PengirimanService) {
+
+	$scope.getStatus = function(statusId) {
+		var namaStatus = ['Baru dipesan', 'Sudah dibayar', 'Sudah dikemas', 'Sudah dikirim', ' Sudah diterima'];
+		return namaStatus[statusId];
+	}
+
 	$scope.message = 'Pengiriman gan!!';
 	$scope.filterObj = {};
 

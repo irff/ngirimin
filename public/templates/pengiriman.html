@@ -63,13 +63,15 @@
                 </tr>
                 <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang">
                   <td>{{ $index+1 }}</td>
+                <tr ng-repeat="png in allPengiriman | filter:searchBarang">
+                  <td>{{ $index + 1 }}</td>
                   <td>{{ png.nama }}</td>
                   <td>12</td>
                   <td><img class="ecomm-icon" src="img/tokopedia.png"></td>
                   <td>{{ png.nama }}</td>
                   <td>{{ png.telepon }}</td>
                   <td>{{ png.tanggal_kirim }}</td>
-                  <td>{{ png.status }}</td>
+                  <td>{{ getStatus(png.status) }}</td>
                   <td>
                     <a href="pengiriman/{{ png.id }}" class="waves-effect btn"><i class="mdi-image-remove-red-eye"></i></a>
                   </td>
