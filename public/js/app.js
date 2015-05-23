@@ -100,6 +100,9 @@ angular.module('ngiriminApp', ['ngRoute'])
 		addBarang: function(barang, callback) {
 			$http.post(barangURL + '/add', barang).success(callback);
 		},
+		removeBarang: function(barang, callback) {
+			$http.post(barangURL + '/' + id + '/remove').success(callback);
+		},
 		editBarang: function(barang, callback) {
 			var id   = barang.id,
 				nama = barang.nama,
@@ -156,6 +159,7 @@ angular.module('ngiriminApp', ['ngRoute'])
 
 .controller('barangController', function($scope, $routeParams, $location, BarangService) {
 	$scope.message = 'Barang gan!';
+	$scope.filterObj = {};
 	var id = 1;
 
 	$scope.barang = {
@@ -167,6 +171,7 @@ angular.module('ngiriminApp', ['ngRoute'])
 	$scope.addBarang = function() {
 		BarangService.addBarang($scope.barang, function(data) {
 			console.log(data);
+			$location.path('/barang')
 		});
 	};
 
@@ -178,16 +183,28 @@ angular.module('ngiriminApp', ['ngRoute'])
 	};
 
 	if($routeParams.barangId) {
-		$scope.barangId = $routeParams.barangId;
-		$scope.singleItem = true;
-		console.log('single');
-		$scope.isLoading2 = true;
+		if($routeParams.barangId == 'add'){
+			console.log('add barang');
+			$scope.isAddBarang = true;
 
-		BarangService.getBarang($scope.barangId, function(data) {
-			console.log(data);
-			$scope.barang = data;
-			$scope.isLoading2 = false;
-		});
+			console.log($scope.barang);
+
+			BarangService.addBarang($scope.barangId, function(data) {
+				console.log(data);
+			});
+		}
+		else{
+			$scope.barangId = $routeParams.barangId;
+			$scope.singleItem = true;
+			console.log('single');
+			$scope.isLoading2 = true;
+
+			BarangService.getBarang($scope.barangId, function(data) {
+				console.log(data);
+				$scope.barang = data;
+				$scope.isLoading2 = false;
+			});
+		}
 	}
 	else{
 		$scope.isLoading = true;
@@ -204,6 +221,8 @@ angular.module('ngiriminApp', ['ngRoute'])
 
 .controller('pengirimanController', function($scope, $routeParams, PengirimanService) {
 	$scope.message = 'Pengiriman gan!!';
+	$scope.filterObj = {};
+
 	var id = 1;
 
 	$scope.pengiriman = {

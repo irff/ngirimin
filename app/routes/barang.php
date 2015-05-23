@@ -68,4 +68,19 @@ $app->group('/barang', function () use ($app) {
 
   });
 
+  $app->post('/:id/remove', function ($id) use ($app) {
+    $raw_data = $app->request->getBody();
+    $post = json_decode($raw_data, true);
+
+    $barang = Barang::find($id);
+    $barang->delete();
+
+    $response = new stdClass;
+    $response->ok = true;
+    
+    echo json_encode($response);
+    exit;
+
+  });
+
 });

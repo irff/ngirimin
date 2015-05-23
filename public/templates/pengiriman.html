@@ -1,18 +1,6 @@
 <div>
   <div class="container">
     <div class="section content-holder">
-      <div class="row">
-        <div class="nav-wrapper col m4 right">
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" ng-model="searchBarang" required>
-              <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
-              <i class="mdi-navigation-close"></i>
-            </div>
-          </form>
-        </div>
-
-      </div>
       <!--   Icon Section   -->
       <div class="row">
         <div class="col s3">
@@ -23,10 +11,21 @@
           </div>
         </div>
 
-        <div ng-if="singleItem">
-          <button class="btn blue waves-effect right" ng-click="addPengiriman()">Tambah Pengiriman</button>
-        </div>
         <div class="col s9">
+          <div ng-if="!singleItem && !isAddBarang" class="row">
+            <div class="col s3 m-t-25">
+              <a href="./pengiriman/add" class="btn blue waves-effect">Tambah Pengiriman</a>
+            </div>
+            <div class="col s9">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" ng-model="filterObj.searchBarang" required>
+                  <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
+                  <i class="mdi-navigation-close"></i>
+                </div>
+              </form>
+            </div>
+          </div>
           <div ng-if="singleItem">
             <h2>Single item Pengiriman dengan id = 1</h2>
 
@@ -62,8 +61,8 @@
                 <tr ng-if="isLoading">
                   <td>Fetching Data...</td>
                 </tr>
-                <tr ng-repeat="png in allPengiriman | filter:searchBarang">
-                  <td>{{ $index }}</td>
+                <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang">
+                  <td>{{ $index+1 }}</td>
                   <td>{{ png.nama }}</td>
                   <td>12</td>
                   <td><img class="ecomm-icon" src="img/tokopedia.png"></td>
