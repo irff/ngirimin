@@ -59,26 +59,30 @@
 
             <div ng-if="!isLoading2">
               <div class="row">
-                <form class="col s12">
-                  <input type="hidden" value="{{ barang.id }}" name="id">
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <input id="nama_barang[]" type="text" class="validate" name="nama" placeholder="Nama Barang" ng-model="barang.nama">
-                      <label class="active" for="nama_barang[]">Nama Barang</label>
+                <h4>Edit Barang</h4>
+                <div class="divider"></div>
+                <div class="section">
+                  <form class="col s12">
+                    <input type="hidden" value="{{ barang.id }}" name="id">
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <input id="nama_barang[]" type="text" class="validate" name="nama" placeholder="Nama Barang" ng-model="barang.nama">
+                        <label class="active" for="nama_barang[]">Nama Barang</label>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s2">
-                      <input id="stok_barang[]" type="text" class="validate" name="stock" placeholder="Stok Barang" ng-model="barang.stok">
-                      <label class="active" for="stok_barang[]">Stok Barang</label>
+                    <div class="row">
+                      <div class="input-field col s2">
+                        <input id="stok_barang[]" type="text" class="validate" name="stock" placeholder="Stok Barang" ng-model="barang.stok">
+                        <label class="active" for="stok_barang[]">Stok Barang</label>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <a href="./barang/remove/{{ barang.id }}">hapus barang</a>
-                  </div>
+                    <div class="row">
+                      <a href="./barang/remove/{{ barang.id }}">hapus barang</a>
+                    </div>
 
-                  <input type="submit" class="btn" value="Edit Barang" ng-click="editBarang()">
-                </form>
+                    <input type="submit" class="btn" value="Simpan" ng-click="editBarang()">
+                  </form>                  
+                </div>
               </div>
             </div>
           </div>
