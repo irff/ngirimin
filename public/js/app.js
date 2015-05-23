@@ -132,11 +132,22 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 	};
 })
 
-.controller('mainController', function($scope, NavigationService) {
+.controller('mainController', function($scope, NavigationService, BarangService, PengirimanService) {
 	$scope.message = 'HOME GAN!';
 
 	$scope.navigation = NavigationService.nav;
 	$scope.baseURL = NavigationService.baseURL;
+
+	BarangService.getAllBarang(function(data) {
+		console.log(data);
+		$scope.allBarang = data;
+	});
+
+	PengirimanService.getAllPengiriman(function(data) {
+		console.log(data);
+		$scope.allPengiriman = data;
+	});
+
 })
 
 .controller('loginController', function($scope) {

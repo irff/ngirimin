@@ -42,7 +42,7 @@
                     <td>Fetching Data...</td>
                   </tr>
                   <tr ng-repeat='brg in allBarang | filter:searchBarang' >
-                    <td>{{ $index }}</td>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ brg.nama }}</td>
                     <td>{{ brg.stok }}</td>
                     <td>
