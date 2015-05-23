@@ -2,7 +2,7 @@
 var BASE_URL = 'http://localhost/ngirimin/public/api/';
 var LOGGED_IN = false;
 
-angular.module('ngiriminApp', ['ngRoute'])
+angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
@@ -154,7 +154,7 @@ angular.module('ngiriminApp', ['ngRoute'])
 	})
 })
 
-.controller('barangController', function($scope, $routeParams, $location, BarangService) {
+.controller('barangController', function($scope, $routeParams, $location, BarangService, toastr) {
 	$scope.message = 'Barang gan!';
 	var id = 1;
 
@@ -174,6 +174,7 @@ angular.module('ngiriminApp', ['ngRoute'])
 		BarangService.editBarang($scope.barang, function(data) {
 			console.log(data);
 			$location.path('/barang')
+			toastr.success('Edit barang berhasil.');
 		});
 	};
 
