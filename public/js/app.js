@@ -1,6 +1,5 @@
 // Config (sorry hardcode)
 var BASE_URL = 'http://localhost/ngirimin/public/api/';
-var LOGGED_IN = false;
 
 angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
@@ -81,9 +80,23 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 .factory('UserService', function($http) {
 	var userURL = BASE_URL + 'user';
+	var LOGGED_IN = false;
+
 	return {
 		getUser: function(callback) {
 			$http.get(userURL).success(callback);
+		},
+		register: function(user, callback) {
+
+		},
+		login: function(user, callback) {
+
+		},
+		isLoggedIn: function() {
+			return LOGGED_IN;
+		},
+		setLoggedIn: function(value) {
+			LOGGED_IN = value;
 		}
 	};
 })
@@ -153,8 +166,30 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 })
 
-.controller('loginController', function($scope) {
-	$scope.message = 'Login gan!!';
+.controller('loginController', function($scope, UserService) {
+	$scope.user = {
+		email: '',
+		password: ''
+	}
+
+	$scope.login = function() {
+		UserService.login($scope.user, function(response) {
+			if(response.status == 'success') {
+				UserService.setLoggedIn(true);
+				$location.path('/home');
+				toastr.success('Login berhasil.');
+			} else {
+				UserService.setLoggedIn(false);
+				toastr.error('Login gagal. Username & password tidak cocok.');
+			}
+		});		
+	}
+
+	$scope.logout = function() {
+		UserService.setLoggedIn(false);
+		$location.path('/login');
+		toastr.success('Logout berhasil.');
+	}
 })
 
 .controller('registerController', function($scope) {
