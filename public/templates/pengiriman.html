@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <div class="container m-t-70">
-=======
-<div class="container">
->>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
   <div class="section content-holder">
     <!--   Icon Section   -->
     <div class="row">
@@ -15,58 +11,11 @@
       </div>
 
       <div class="col s9">
-<<<<<<< HEAD
-        <div ng-if="!singleItem && !isAddBarang" class="row">
+        <div ng-if="!singleItem && !isAddPengiriman" class="row">
           <div class="col s3 m-t-25">
             <a href="./pengiriman/add" class="btn blue waves-effect">Tambah Pengiriman</a>
           </div>
           <div class="col s9">
-            <form>
-              <div class="input-field">
-                <input id="search" type="search" ng-model="filterObj.searchBarang" required>
-                <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
-                <i class="mdi-navigation-close"></i>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div ng-if="singleItem">
-          <h2>Single item Pengiriman dengan id = 1</h2>
-
-          <h3>id = {{ pengiriman.id }}</h3>
-          <h3>id user = {{ pengiriman.id_user }}</h3>
-          <h3>id barang = {{ pengiriman.id_barang }}</h3>
-          <h3>tanggal kirim = {{ pengiriman.tanggal_kirim }}</h3>
-          <h3>nama = {{ pengiriman.nama }}</h3>
-          <h3>alamat = {{ pengiriman.alamat }}</h3>
-          <h3>kode pos = {{ pengiriman.kode_pos}}</h3>
-          <h3>telepon = {{ pengiriman.telepon }}</h3>
-          <h3>email = {{ pengiriman.email }}</h3>
-          <h3>status = {{ pengiriman.status }}</h3> 
-        </div>
-        <div ng-if="!singleItem">
-          <table class="barang">
-            <thead>
-              <tr>
-                <th data-field="no">No</th>
-                <th data-field="barang">Nama Barang</th>
-                <th data-field="count">Jumlah</th>
-                <th data-field="ecommerce">Via</th>
-                <th data-field="nama">Nama</th>
-                <th data-field="telepon">Telepon</th>
-                <th data-field="tanggal">Tanggal</th>
-                <th data-field="status">Status</th>
-                <th data-field="option">Option</th>
-                <th data-field="change-status">Change Status</th>
-              </tr>
-            </thead>
-
-=======
-        <div ng-if="!singleItem && !isAddPengiriman" class="row">
-          <div class="col s5 m-t-25">
-            <a href="./pengiriman/add" class="btn blue waves-effect">Tambah Pengiriman</a>
-          </div>
-          <div class="col s7">
             <form>
               <div class="input-field">
                 <input id="search" type="search" ng-model="filterObj.searchBarang" required>
@@ -237,21 +186,10 @@
                 <th data-field="change-status">Change Status</th>
               </tr>
             </thead>
-
->>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
             <tbody>
               <tr ng-if="isLoading">
                 <td>Fetching Data...</td>
               </tr>
-<<<<<<< HEAD
-              <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang">
-                <td>{{ $index+1 }}</td>
-                <td>{{ png.nama }}</td>
-                <td>12</td>
-                <td><img class="ecomm-icon" src="img/tokopedia.png"></td>
-                <td>{{ png.nama }}</td>
-                <td>{{ png.telepon }}</td>
-=======
               <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang | filter: statusFilter">
                 <td>{{ $index+1 }}</td>
                 <td>{{ allBarang[ png.id_barang - 1].nama }}</td>
@@ -259,7 +197,6 @@
                 <!-- <td><img class="ecomm-icon" src="img/tokopedia.png"></td> -->
                 <td>{{ png.nama }}</td>
                 <!-- <td>{{ png.telepon }}</td> -->
->>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
                 <td>{{ png.tanggal_kirim }}</td>
                 <td>{{ getStatus(png.status) }}</td>
                 <td>

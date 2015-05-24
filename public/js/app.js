@@ -127,7 +127,7 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'n
 		addBarang: function(barang, callback) {
 			$http.post(barangURL + '/add', barang).success(callback);
 		},
-		removeBarang: function(barang, callback) {
+		removeBarang: function(id, callback) {
 			$http.post(barangURL + '/' + id + '/remove').success(callback);
 		},
 		editBarang: function(barang, callback) {
@@ -252,6 +252,15 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'n
 			console.log(data);
 			$location.path('/barang');
 			toastr.success($scope.barang.nama + ' berhasil ditambahkan.')
+		})
+	}
+
+	$scope.removeBarang = function() {
+		console.log("wew");
+		BarangService.removeBarang($scope.barangId, function(data) {
+			console.log(data);
+			$location.path('/barang');
+			toastr.success($scope.barang.nama + ' berhasil dihapus.')
 		})
 	}
 
