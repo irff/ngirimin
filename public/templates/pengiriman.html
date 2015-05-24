@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <div class="container m-t-70">
+=======
+<div class="container">
+>>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
   <div class="section content-holder">
     <!--   Icon Section   -->
     <div class="row">
@@ -11,6 +15,7 @@
       </div>
 
       <div class="col s9">
+<<<<<<< HEAD
         <div ng-if="!singleItem && !isAddBarang" class="row">
           <div class="col s3 m-t-25">
             <a href="./pengiriman/add" class="btn blue waves-effect">Tambah Pengiriman</a>
@@ -56,10 +61,189 @@
               </tr>
             </thead>
 
+=======
+        <div ng-if="!singleItem && !isAddPengiriman" class="row">
+          <div class="col s5 m-t-25">
+            <a href="./pengiriman/add" class="btn blue waves-effect">Tambah Pengiriman</a>
+          </div>
+          <div class="col s7">
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" ng-model="filterObj.searchBarang" required>
+                <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
+                <i class="mdi-navigation-close"></i>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div ng-if="singleItem">
+          <div class="row">
+            <div class="col s12">
+              <h4>Detail Pengiriman</h4>
+              <div class="divider"></div>                
+            </div>
+            <form class="col s6">
+               <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ allBarang[ pengiriman.id_barang - 1].nama }}">
+                  <label class="active">Nama Barang</label>
+                </div>
+              </div>
+               <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.jumlah_barang }}">
+                  <label class="active">Jumlah Barang</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.tanggal_kirim }}">
+                  <label class="active">Tanggal Kirim</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.nama }}">
+                  <label class="active">Nama Penerima </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.alamat }}">
+                  <label class="active">Alamat Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.kodepos }}">
+                  <label class="active">Kode Pos</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.telepon }}">
+                  <label class="active">No. Telepon Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ pengiriman.email }}">
+                  <label class="active">Email Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" value="{{ getStatus(pengiriman.status) }}">
+                  <label class="active">Status</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div ng-if="isAddPengiriman">
+          <div class="row">
+            <div class="col s12">
+              <h4>Tambah pengiriman</h4>
+              <div class="divider"></div>                
+            </div>
+            <form class="col s6">
+            <!-- // Nyoba select2 tapi css-nya konflik sama material design 
+              <div class="row">
+                <div class="input-field col s12">
+                  <ui-select ng-model="pengiriman.id_barang" theme="select2" class="browser-default">
+                    <ui-select-match placeholder="Pilih barang yang ingin anda kirim">{{ $select.selected.nama }}</ui-select-match>
+                    <ui-select-choices repeat="brg.id as brg in allBarang | filter: $select.search">
+                      <div ng-bind-html="brg.nama | highlight: $select.search">{{ brg.nama }}</div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+            -->
+               <div class="row">
+                <div class="input-field col s12">
+                    <select class="browser-default" ng-model="pengiriman.id_barang">
+                      <option value="" disabled selected>Pilih Barang</option>
+                      <option ng-repeat="brg in allBarang" value="{{ brg.id }}">{{ brg.nama }}</option>
+                    </select>
+                </div>
+              </div>
+               <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="Jumlah Barang" class="validate" ng-model="pengiriman.jumlah_barang">
+                  <label for="">Jumlah Barang</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="Tanggal Kirim" class="validate" ng-model="pengiriman.tanggal_kirim">
+                  <label for="">Tanggal Kirim</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="Nama Penerima" class="validate" ng-model="pengiriman.nama">
+                  <label for="">Nama Penerima </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="Alamat Penerima" class="validate" ng-model="pengiriman.alamat">
+                  <label for="">Alamat Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="Kode Pos" class="validate" ng-model="pengiriman.kodepos">
+                  <label for="">Kode Pos</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="No. Telepon Penerima" class="validate" ng-model="pengiriman.telepon">
+                  <label for="">No. Telepon Penerima</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" placeholder="Email Penerima" class="validate" ng-model="pengiriman.email">
+                  <label for="">Email Penerima</label>
+                </div>
+              </div>
+              <input type="submit" class="btn" value="Tambah Pengiriman" ng-click="addPengiriman()">
+            </form>
+          </div>
+        </div>
+        <div ng-if="!singleItem && !isAddPengiriman">
+          <form>
+            <h5>Filter Berdasarkan Status</h5>
+            <input type="radio" id="status-0" ng-model="statusFilter.status" value="0"><label for="status-0">Baru dipesan</label>
+            <input type="radio" id="status-1" ng-model="statusFilter.status" value="1"><label for="status-1">Sudah dibayar</label>
+            <input type="radio" id="status-2" ng-model="statusFilter.status" value="2"><label for="status-2">Sudah dikemas</label>
+            <input type="radio" id="status-3" ng-model="statusFilter.status" value="3"><label for="status-3">Sudah dikirim</label>
+            <input type="radio" id="status-4" ng-model="statusFilter.status" value="4"><label for="status-4">Sudah diterima</label>
+          </form>
+          <table class="barang">
+            <thead>
+              <tr>
+                <th data-field="no">No</th>
+                <th data-field="barang">Nama Barang</th>
+                <th data-field="count">Jumlah</th>
+                <!-- <th data-field="ecommerce">Via</th> -->
+                <th data-field="nama">Nama</th>
+                <!-- <th data-field="telepon">Telepon</th> -->
+                <th data-field="tanggal">Tanggal</th>
+                <th data-field="status">Status</th>
+                <th data-field="option">Option</th>
+                <th data-field="change-status">Change Status</th>
+              </tr>
+            </thead>
+
+>>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
             <tbody>
               <tr ng-if="isLoading">
                 <td>Fetching Data...</td>
               </tr>
+<<<<<<< HEAD
               <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang">
                 <td>{{ $index+1 }}</td>
                 <td>{{ png.nama }}</td>
@@ -67,6 +251,15 @@
                 <td><img class="ecomm-icon" src="img/tokopedia.png"></td>
                 <td>{{ png.nama }}</td>
                 <td>{{ png.telepon }}</td>
+=======
+              <tr ng-repeat="png in allPengiriman | filter:filterObj.searchBarang | filter: statusFilter">
+                <td>{{ $index+1 }}</td>
+                <td>{{ allBarang[ png.id_barang - 1].nama }}</td>
+                <td>12</td>
+                <!-- <td><img class="ecomm-icon" src="img/tokopedia.png"></td> -->
+                <td>{{ png.nama }}</td>
+                <!-- <td>{{ png.telepon }}</td> -->
+>>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
                 <td>{{ png.tanggal_kirim }}</td>
                 <td>{{ getStatus(png.status) }}</td>
                 <td>

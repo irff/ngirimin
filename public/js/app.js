@@ -1,7 +1,7 @@
 // Config (sorry hardcode)
 var BASE_URL = 'http://localhost/ngirimin/public/api/';
 
-angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
+angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'ngSanitize'])
 
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
@@ -47,7 +47,6 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 		templateUrl: 'templates/pengiriman.html',
 		controller: 'pengirimanController'
 	});
-
 
 	$locationProvider.html5Mode(true);
 })
@@ -155,7 +154,7 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 			$http.get(pengirimanURL + '/' + id).success(callback);
 		},
 		addPengiriman: function(pengiriman, callback) {
-			$http.get(pengirimanURL + '/add', pengiriman).success(callback);
+			$http.post(pengirimanURL + '/add', pengiriman).success(callback);
 		},
 		updateStatus: function(id, code, callback) {
 			$http.get(pengirimanURL + '/' + id + '/toggle/' + code).success(callback);
@@ -244,21 +243,22 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 		BarangService.editBarang($scope.barang, function(data) {
 			console.log(data);
 			$location.path('/barang')
-			toastr.success('Edit barang berhasil.');
+			toastr.success($scope.barang.nama + ' berhasil disimpan.');
 		});
 	};
+
+	$scope.addBarang = function() {
+		BarangService.addBarang($scope.barang, function(data) {
+			console.log(data);
+			$location.path('/barang');
+			toastr.success($scope.barang.nama + ' berhasil ditambahkan.')
+		})
+	}
 
 	if($routeParams.barangId) {
 		if($routeParams.barangId == 'add'){
 			console.log('add barang');
 			$scope.isAddBarang = true;
-
-			console.log($scope.barang);
-
-			BarangService.addBarang($scope.barangId, function(data) {
-				console.log(data);
-				toastr.success($scope.barang.nama + ' berhasil ditambahkan.');
-			});
 		}
 		else{
 			$scope.barangId = $routeParams.barangId;
@@ -286,7 +286,7 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 })
 
-.controller('pengirimanController', function($scope, $location, $routeParams, PengirimanService, UserService, toastr) {
+.controller('pengirimanController', function($scope, $location, $routeParams, PengirimanService, BarangService, UserService, toastr) {
 	if(!UserService.isLoggedIn()) {
 		$location.path('/login');
 		toastr.error('Please log in first.');
@@ -304,16 +304,22 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 
 	$scope.pengiriman = {
 		id_user: 1,
-		id_barang: 1,
-		jumlah_barang: 1,
-		tanggal_kirim: "11 Januari 2015",
-		nama: "Irfan",
-		alamat: "Pocin aja",
-		kodepos: "16424",
-		telepon: "089666",
-		email: "irfan@ui.ac.id",
+		id_barang: "",
+		jumlah_barang: "",
+		tanggal_kirim: "",
+		nama: "",
+		alamat: "",
+		kodepos: "",
+		telepon: "",
+		email: "",
 		status: 0
 	};
+
+	// load all barang untuk input barang yang mau dikirim & ngeliat nama barang
+	BarangService.getAllBarang(function(data) {
+		console.log(data);
+		$scope.allBarang = data;
+	});
 
 	var getAllPengiriman = function() {
 		PengirimanService.getAllPengiriman(function(data) {
@@ -324,29 +330,37 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr'])
 	}
 
 	$scope.addPengiriman = function() {
-		PengirimanService.addPengiriman($scope.pegiriman, function(data) {
+		console.log($scope.pengiriman);
+		PengirimanService.addPengiriman($scope.pengiriman, function(data) {
 			console.log(data);
+			$location.path('/pengiriman');
 			toastr.success('Pengiriman berhasil ditambahkan');
 		});
 	};
+
 	$scope.updateStatus =  function(id, code) {
 		PengirimanService.updateStatus(id, code, function(data) {
 			console.log(data);
 			getAllPengiriman();
 			toastr.success('Status berhasil diubah menjadi: ' + $scope.getStatus(code));
 		});
-	}
+	};
 
 	$scope.isLoading = true;
 	if($routeParams.pengirimanId) {
-		$scope.pengirimanId = $routeParams.pengirimanId;
-		$scope.singleItem = true;
-		console.log('single');
+		if($routeParams.pengirimanId == 'add') {
+			$scope.isAddPengiriman = true;
+		} else {
+			$scope.pengirimanId = $routeParams.pengirimanId;
+			$scope.isAddPengiriman = false;
+			$scope.singleItem = true;
+			console.log('single');
 
-		PengirimanService.getPengiriman($scope.pengirimanId, function(data) {
-			console.log(data);
-			$scope.pengiriman = data;
-		});
+			PengirimanService.getPengiriman($scope.pengirimanId, function(data) {
+				console.log(data);
+				$scope.pengiriman = data;
+			});			
+		}
 	}
 
 	getAllPengiriman();

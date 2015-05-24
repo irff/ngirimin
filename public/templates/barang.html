@@ -8,11 +8,28 @@
           <a href="./barang" class="btn col m12 waves-effect"><i class="mdi-action-shopping-cart"></i> List Barang</a>
           <a href="./pengiriman" class="btn col m12 btn-flat waves-effect"><i class="mdi-maps-local-shipping"></i> List Pengiriman</a>
         </div>
+<<<<<<< HEAD
       </div>
       <div class="col s9">
         <div ng-if="!singleItem && !isAddBarang" class="row">
           <div class="col s3 m-t-25">
             <a href="./barang/add" class="btn blue waves-effect" >Tambah Barang</a>
+=======
+        <div class="col s9">
+          <div ng-if="!singleItem && !isAddBarang" class="row">
+            <div class="col s5 m-t-25">
+              <a href="./barang/add" class="btn blue waves-effect" >Tambah Barang</a>
+            </div>
+            <div class="col s7">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" ng-model="filterObj.searchBarang" required>
+                  <label for="search"><i class="mdi-action-search"></i> Cari barang</label>
+                  <i class="mdi-navigation-close"></i>
+                </div>
+              </form>
+            </div>
+>>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
           </div>
           <div class="col s9">
             <form>
@@ -47,6 +64,7 @@
                 </td>
               </tr>
 
+<<<<<<< HEAD
             </tbody>
           </table>
         </div>
@@ -54,6 +72,41 @@
         <div ng-if="singleItem && !isAddBarang">
           <div ng-if="isLoading2">
             <td>Fetching Data...</td>
+=======
+          <div ng-if="singleItem && !isAddBarang">
+            <div ng-if="isLoading2">
+              <td>Fetching Data...</td>
+            </div>
+
+            <div ng-if="!isLoading2">
+              <div class="row">
+                <h4>Edit Barang</h4>
+                <div class="divider"></div>
+                <div class="section">
+                  <form class="col s12">
+                    <input type="hidden" value="{{ barang.id }}" name="id">
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <input id="nama_barang[]" type="text" class="validate" name="nama" placeholder="Nama Barang" ng-model="barang.nama">
+                        <label class="active" for="nama_barang[]">Nama Barang</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s2">
+                        <input id="stok_barang[]" type="text" class="validate" name="stock" placeholder="Stok Barang" ng-model="barang.stok">
+                        <label class="active" for="stok_barang[]">Stok Barang</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <a href="./barang/remove/{{ barang.id }}">hapus barang</a>
+                    </div>
+
+                    <input type="submit" class="btn" value="Simpan" ng-click="editBarang()">
+                  </form>                  
+                </div>
+              </div>
+            </div>
+>>>>>>> 6b607da2119a3bb3f49f0087c3c8bdfb5e1e2f86
           </div>
 
           <div ng-if="!isLoading2">
