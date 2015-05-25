@@ -72,12 +72,16 @@
                         <label class="active" for="stok_barang[]">Stok Barang</label>
                       </div>
                     </div>
-                    <div class="row">
-                      <a href="./barang/remove/{{ barang.id }}" ng-click="removeBarang()">hapus barang</a>
+                    <div class="col s12">
+                      <a class="btn" href="./view/{{ barang.id }}">Link ke ke Barang</a>
+                      <a class="btn btn-alert red" href="./barang/remove/{{ barang.id }}" ng-click="removeBarang()">hapus barang</a>
                     </div>
-                    <input type="submit" class="btn" value="Simpan" ng-click="editBarang()">
-                  </form>                  
+                    <div class="col s12 m-t-25">
+                      <input type="submit" class="btn" value="Simpan" ng-click="editBarang()">
+                    </div>
+                  </form>
                 </div>
+                <div class="divider"></div>
               </div>
             </div>
           </div>

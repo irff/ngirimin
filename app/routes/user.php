@@ -38,4 +38,23 @@ $app->group('/user', function () use ($app) {
 
   });
 
+  $app->post('/add', function () use ($app) {
+    $raw_data = $app->request->getBody();
+    $post = json_decode($raw_data, true);
+
+    $user = new User();
+    $user->nama = $post['nama'];
+    $user->alamat = $post['alamat'];
+    $user->kodepos = $post['kodepos'];
+    $user->telepon = $post['telepon'];
+    $user->save();
+
+    $response = new stdClass;
+    $response->ok = true;
+    
+    echo json_encode($response);
+    exit;
+
+  });
+
 });

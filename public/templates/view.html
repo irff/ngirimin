@@ -1,0 +1,23 @@
+<div class="container m-t-70">
+  <div class="section content-holder">
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 center">
+          <div ng-if="singleItem">
+            <div ng-if="isLoading2">
+              <td>Fetching Data...</td>
+            </div>
+            <div ng-if="!isLoading2">
+              <div class="row">
+                <h4>{{ barang.nama }}</h4>
+                <div class="divider"></div>
+                <h3>{{ barang.stok }}</h3>
+                <h5>barang tersisa</h5>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+  </div>
+</div>

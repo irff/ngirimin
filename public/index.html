@@ -33,8 +33,7 @@
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="#" class="brand-logo"><img src="img/logo40.png" style="height:40px;margin-top:12px"></a>
 			<ul class="right hide-on-med-and-down">
-				<!-- <li class="waves-effect"><a href="#" class="">Login</a></li> -->
-				<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1">Muhammad Faris<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+				<li ng-if="!isLoggedIn"><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1">Muhammad Faris<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 			</ul>
 			<ul id="nav-mobile" class="side-nav">
 				<li><a href="#">Navbar Link</a></li>
@@ -55,7 +54,7 @@
 
 <script src="/ngirimin/public/js/app.js"></script>
 <script type="text/javascript">
-$(".button-collapse").sideNav();
+	$(".button-collapse").sideNav();
 </script>
 
 </body>

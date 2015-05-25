@@ -38,6 +38,11 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'n
 		controller: 'barangController'
 	})
 
+	.when('/view/:barangId', {
+		templateUrl: 'templates/view.html',
+		controller: 'viewController'
+	})
+
 	.when('/pengiriman', {
 		templateUrl: 'templates/pengiriman.html',
 		controller: 'pengirimanController'
@@ -184,6 +189,8 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'n
 })
 
 .controller('loginController', function($scope, $location, UserService, toastr) {
+	$scope.isLoggedIn = false;
+
 	$scope.user = {
 		email: '',
 		password: ''
@@ -293,6 +300,28 @@ angular.module('ngiriminApp', ['ngRoute', 'ngAnimate', 'toastr', 'ui.select', 'n
 
 	}
 
+})
+
+.controller('viewController', function($scope, $routeParams, $location, BarangService, UserService, toastr) {
+	$scope.barang = {
+		id_user: 1,
+		nama: '',
+		stok: ''
+	};
+
+	if($routeParams.barangId) {
+		console.log("we");
+		$scope.barangId = $routeParams.barangId;
+		$scope.singleItem = true;
+		console.log('single');
+		$scope.isLoading2 = false;
+
+		BarangService.getBarang($scope.barangId, function(data) {
+			console.log(data);
+			$scope.barang = data;
+			$scope.isLoading2 = false;
+		});
+	}
 })
 
 .controller('pengirimanController', function($scope, $location, $routeParams, PengirimanService, BarangService, UserService, toastr) {
